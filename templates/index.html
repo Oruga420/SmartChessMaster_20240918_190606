@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chess Game</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chessboard-js/1.0.0/chessboard-1.0.0.min.css">
+</head>
+<body>
+    <div class="game-container">
+        <div class="captured-pieces">
+            <div id="white-captured" class="captured-row">
+                <span>White captured:</span>
+            </div>
+            <div id="black-captured" class="captured-row">
+                <span>Black captured:</span>
+            </div>
+        </div>
+        <div id="board" class="chessboard"></div>
+        <div class="sidebar">
+            <div class="clock">
+                <div>White: <span id="white-clock">10:00</span></div>
+                <div>Black: <span id="black-clock">10:00</span></div>
+            </div>
+            <div id="status"></div>
+            <div class="strategy">
+                Strategy: <span id="strategy"></span>
+            </div>
+            <div class="difficulty">
+                <label for="difficulty-select">AI Difficulty:</label>
+                <select id="difficulty-select">
+                    <option value="easy">Easy</option>
+                    <option value="medium" selected>Medium</option>
+                    <option value="hard">Hard</option>
+                </select>
+            </div>
+            <button id="reset-btn">New Game</button>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chessboard-js/1.0.0/chessboard-1.0.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.3/chess.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+    <script>
+        var PIECE_THEME = "{{ url_for('static', filename='img/') }}";
+    </script>
+    <script src="{{ url_for('static', filename='js/chess_game.js') }}"></script>
+</body>
+</html>
